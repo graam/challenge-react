@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Websocket from 'react-websocket'
 
-import { fetchMachines, updateMachineHealth } from './actions'
+import {
+	fetchMachines,
+	updateMachineHealth
+} from './actions'
 
 export class Machines extends React.Component {
 	componentDidMount() {

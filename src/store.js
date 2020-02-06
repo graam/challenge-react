@@ -18,6 +18,10 @@ export const machine = (state = {}, action) => {
 			return action.machine
 		case 'HEALTH_UPDATE':
 			return Object.assign({}, state, { health: action.machine.health })
+		case 'UPDATE_MACHINE_NAME':
+			return Object.assign({}, state, { name: action.name })
+		case 'UPDATE_MACHINE':
+			return Object.assign({}, action.machine)
 		default:
 			return state
 	}

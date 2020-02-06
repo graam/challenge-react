@@ -2,11 +2,37 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Websocket from 'react-websocket'
 
-import { fetchMachine, updateMachineHealth } from './actions'
+import {
+	fetchMachine,
+	updateMachine,
+	updateMachineName,
+	updateMachineHealth
+} from './actions'
 
 export class Machine extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			name: ''
+		}
+	}
+
 	componentDidMount() {
 		this.props.dispatch(fetchMachine(this.props.match.params.machineId))
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.state.name === '' || prevProps.machine.name !== this.props.machine.name) {
+			this.setState({ name: this.props.machine.name })
+		}
+	}
+
+	handleFormChange(e) {
+		this.props.dispatch(updateMachineName(e.target.value))
+	}
+
+	updateMachineName() {
+		this.props.dispatch(updateMachine(this.props.machine))
 	}
 
 	handleData(data) {
@@ -17,8 +43,14 @@ export class Machine extends React.Component {
 	render() {
 		const { machine } = this.props
 		return (
-			<div>
-				<p>Name: {machine.name}</p>
+			<div>Name: <input
+				value={this.state.name}
+				onChange={e => this.handleFormChange(e)}
+			/>
+				<button
+					title='Save name'
+					onClick={() => this.updateMachineName()}
+				>save</button>
 				<p>IP Address: {machine.ip_address}</p>
 				<p>Health: {machine.health}</p>
 

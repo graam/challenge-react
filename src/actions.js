@@ -41,3 +41,25 @@ export function updateMachineHealth(machine) {
 		})
 	}
 }
+
+export function updateMachineName(name) {
+	return {
+		type: 'UPDATE_MACHINE_NAME',
+		name
+	}
+}
+
+export function updateMachine(machine) {
+	return (dispatch) => {
+		Axios.put(hostUrl + '/machines/' + machine.id, machine)
+			.then(res => {
+				dispatch({
+					type: 'UPDATE_MACHINE',
+					machine: res.data
+				})
+			})
+			.catch(error => {
+				console.log(error)
+			})
+	}
+}
