@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Websocket from 'react-websocket'
 
 import {
@@ -25,7 +24,7 @@ export class Machines extends React.Component {
 			<div>
 				<ul>{
 					machines.map(
-						(machine) => <li key={machine.id}><Link to={'/machines/' + machine.id}>Name: {machine.name}, IP Address: {machine.ip_address}, Health: {machine.health}</Link></li>
+						(machine) => <li key={machine.id}><a href={'/machines/' + machine.id}>Name: {machine.name}, IP Address: {machine.ip_address}, Health: {machine.health}</a></li>
 					)
 				}</ul>
 
