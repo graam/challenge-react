@@ -37,7 +37,9 @@ export class Machine extends React.Component {
 
 	handleData(data) {
 		let result = JSON.parse(data)
-		this.props.dispatch(updateMachineHealth(result))
+		if (result.id === this.props.machine.id) {
+			this.props.dispatch(updateMachineHealth(result))
+		}
 	}
 
 	render() {
