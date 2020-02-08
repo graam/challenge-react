@@ -13,7 +13,7 @@ export function fetchMachines() {
 				})
 			})
 			.catch(error => {
-				console.log(error)
+				console.error('Error on fetching machines details:', error)
 			})
 	}
 }
@@ -28,7 +28,7 @@ export function fetchMachine(id) {
 				})
 			})
 			.catch(error => {
-				console.log(error)
+				console.error('Error on fetching machine details:', error)
 			})
 	}
 }
@@ -59,7 +59,7 @@ export function updateMachine(machine) {
 				})
 			})
 			.catch(error => {
-				console.log(error)
+				console.error('Error on updating machine details:', error)
 			})
 	}
 }
